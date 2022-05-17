@@ -5,6 +5,7 @@ class View{
     public function render($name, $data=[]){
         $this->datos=$data;
         require 'src/views/'.$name. '.php';
+        
     }
 }
 
