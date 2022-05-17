@@ -1,0 +1,9 @@
+{
+    "name": "profesor/proyec-fin",
+    "autoload": {
+        "psr-4": {
+            "Profesor\\ProyecFin\\": "src/"
+        }
+    },
+    "require": {}
+}
