@@ -1,0 +1,63 @@
+.cuenta{
+    background-color: aliceblue;
+    width: 500px;
+    height: 290px;
+    margin:20px;
+    overflow: auto;
+}
+
+.botones{
+    width: 300px;
+    height: 290px;
+    margin:20px;
+    background-color: aliceblue;
+}
+
+.producto{
+    width: 10px;
+    height: 145px;
+    margin:20px;
+    overflow: auto;
+    background-color: yellow;
+}
+
+.familia{
+    width: 700px;
+    height: 150px;
+    margin:20px;
+    overflow: auto;
+    /* overflow: scroll; */
+    background-color: yellow
+}
+
+.img{ 
+    margin:5px;       
+    width:150px;
+    height:120px;
+}
+
+.ordenimg{
+    display: flex;
+    align-items: row;
+}
+
+.botonesi{
+
+    width:60px;
+    height:100px;
+}
+
+.botones2{
+    margin:10px;
+}
+
+.mol{
+    background-color:red
+}
+
+.centrado{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color:red;}

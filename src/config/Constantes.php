@@ -9,6 +9,9 @@
         static public string $PASSWORD= 'abc123.';
         static public string $CHARSET= 'utf8mb4';
 
+        //ruta de donde guardar las images
+        static public string $RUTAIMG="/proyecFin/img/";
+
     }
 
 ?>

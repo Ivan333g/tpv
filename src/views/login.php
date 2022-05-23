@@ -27,6 +27,7 @@
 				<form action='index.php' method='post'>
 					<div class="input-group form-group">
 						<!--imagen alado del usernam---->
+						
 						<div class="input-group-prepend">
 							<span class="input-group-text"><i class="fas fa-user"></i></span>
 						</div>
@@ -43,6 +44,10 @@
 						<input type="password" class="form-control" placeholder="password" name='password' id='password' required>
 					</div>
 					<div class="form-group">
+						<!--ver porque no funcipna la clase--->
+					<div><span class='error'>
+                            <?php echo $this->datos['error']; ?>
+                        </span></div> 
 						<!---bottom--->
 						<input type="submit" value="Login" name="action" id="action" class="btn float-right login_btn">
 					</div>
