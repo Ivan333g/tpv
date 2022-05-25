@@ -36,7 +36,7 @@ include "menudesplegable.php";
 
 <!-- rebisar para que puda agregar productos con su nombrecorto -->
         <br>
-        <span>Introduce el precio del producto: </span> <input type="number" name="precio" value="<?php echo (isset($this->datos['precio']) ? $this->datos['precio'] : "") ?>" <?php if($_REQUEST['action']=="Editar"){echo "readonly";}  ?> placeholder="Precio" > 
+        <span>Introduce el precio del producto: </span> <input type="number" name="precio" value="<?php echo (isset($this->datos['precio']) ? $this->datos['precio'] : "") ?>" placeholder="Precio" > 
 
         <br> <br>
         <span>Introduce el nombre del producto: </span> <input type="text" name="nombre" value="<?php echo (isset($this->datos['nombre']) ? $this->datos['nombre'] : "") ?>" placeholder="Nombre"> <br> <br>
@@ -49,13 +49,9 @@ include "menudesplegable.php";
             }
 
         echo "</select><br><br>"; ?>
-
-        <!-- <input type="text" name="familia" value="<?php echo (isset($this->datos['familia']) ? $this->datos['familia'] : "") ?>" placeholder="Familia del producto"> <br> <br> -->
-
         <span>Introduce la imagen del producto: </span> <input type="file" name="img" id="img"> <br> <br>
-        <!--<input type="text" name="descripcion" value="<?php echo (isset($this->datos['descripcion']) ? $this->datos['descripcion'] : "") ?>" placeholder="Descripcion del procuto"> <br> <br> -->
-
         <input type="hidden" name="tabla" value="Producto" />
+        <input type="hidden" name="id_producto" value="<?php echo (isset($this->datos['id_producto']) ? $this->datos['id_producto'] : "") ?>" >
         <input type="submit" name="action" value="<?php echo $this->datos['op'] ?>" />
 
     </form>

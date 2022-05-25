@@ -43,7 +43,7 @@ if (!isset($_SESSION['usuario'])) {
             
             <div class="col-11 border border-dark producto">
                 <div class="ordenimg">
-                    <button id="vino" class="botones2"><img src="./styles/vino.jpg" class="botonesi"></button>
+                    <!-- <button id="vino" class="botones2"><img src="./styles/vino.jpg" class="botonesi"></button>
                     <button id="boca" class="botones2"><img src="boca.jpg" class="botonesi"></button>
                     <button id="vino" class="botones2"><img src="vino.jpg" class="botonesi"></button>
                     <button id="boca" class="botones2"><img src="boca.jpg" class="botonesi"></button>
@@ -56,6 +56,15 @@ if (!isset($_SESSION['usuario'])) {
                     <button id="boca" class="botones2"><img src="boca.jpg" class="botonesi"></button>
                     <button id="vino" class="botones2"><img src="vino.jpg" class="botonesi"></button>
                     <button id="boca" class="botones2"><img src="boca.jpg" class="botonesi"></button>
+                    <button id="vino" class="botones2"><img src="./styles/vino.jpg" class="botonesi"></button> -->
+                    <?php
+                    foreach ($this->datos['producto'] as $producto) {
+                        echo "<button class='botones2'><img src='./img/".$producto->img."' class='botonesi'></button>";
+                        //ver porque esta invertido el id y el nombre
+                        // echo "<a href='index.php?action=VerProductos&id_familia=$familia->id_familia&nombre=$familia->nombre'
+                        // ><img src='./img/".$familia->img."' class='img'></a>";
+                    }
+                    ?> 
                 </div>   
             </div>
 
@@ -74,11 +83,10 @@ if (!isset($_SESSION['usuario'])) {
                 <a href="https://www.google.com/"><img src="boca.jpg" class="img"></a>
                 <a href="https://www.youtube.com/"><img src="vino.jpg" class="img"></a> -->
                 <?php
-                foreach ($this->datos as $familia) {
+                foreach ($this->datos['familia'] as $familia) {
                     //ver porque esta invertido el id y el nombre
-                    echo "<a href='index.php?tabla=Producto&action=Listar&id=$familia->id_familia&nombre=$familia->nombre'
+                    echo "<a href='index.php?action=VerProductos&id_familia=$familia->id_familia&nombre=$familia->nombre'
                     ><img src='./img/".$familia->img."' class='img'></a>";
-                
                 }
                 ?> 
                 </div>

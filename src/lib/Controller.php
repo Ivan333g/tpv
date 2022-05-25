@@ -54,4 +54,15 @@ class Controller{
     }
 
 }
+
+
+// $rutaFin=$carpetaDestino;
+// if(!file_exists($rutaFin)){
+//     //movemos la imagen del direcctorio temporal al direcctorio escogido
+//     move_uploaded_file($_FILES[$param]['tmp_name'],$rutaFin);
+//     return $nombreImagen;
+// }else{
+//     error_log("el nombre de la imagen ya existe");
+//     return NULL;
+// }
 ?>

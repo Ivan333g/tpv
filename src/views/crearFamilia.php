@@ -33,10 +33,8 @@ include "menudesplegable.php";
 <body>
 
     <form name="formulario" action="index.php" method="post" enctype="multipart/form-data" autocomplete="off">
-
-
         <br>
-        <!-- <span>Introduce el código de la familia: </span> <input type="text" name="codigo" value="<?php echo (isset($this->datos['codigo']) ? $this->datos['codigo'] : "") ?>" placeholder="Código de familia"> <br> <br> -->
+        <input type="hidden" name="id_familia" value="<?php echo (isset($this->datos['id_familia']) ? $this->datos['id_familia'] : "") ?>" >
         <span>Introduce el nombre de la familia: </span> <input type="text" name="nombre" value="<?php echo (isset($this->datos['nombre']) ? $this->datos['nombre'] : "") ?>" placeholder="Nombre de familia"> <br> <br>
         <span>Introduce una imagen:</span><input type="file" name="img" id="img"> <br> <br>
         <input type="hidden" name="tabla" value="Familia" />

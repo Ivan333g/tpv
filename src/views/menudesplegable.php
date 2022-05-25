@@ -7,6 +7,12 @@
     width:150px;
     height:120px;
 }
+.body{background-image: url('http://getwallpapers.com/wallpaper/full/a/5/d/544750.jpg');
+	background-size: cover;
+background-repeat: no-repeat;
+height: 100%;
+font-family: 'Numans', sans-serif;
+}
 			* {
 				margin:0px;
 				padding:0px;
@@ -64,7 +70,7 @@
 			
 		</style>
 	</head>
-	<body>
+	<body class="body">
 		<div id="header">
 			<nav> <!-- Aqui estamos iniciando la nueva etiqueta nav -->
 				<ul class="nav">
@@ -88,9 +94,9 @@
 							<li><a href="index.php?tabla=Tienda&action=Listar">Listar</a></li>
                             <li><a href="index.php?tabla=Tienda&action=Stock">Stock</a></li>
 						</ul>
-					</li>                                         -->
+					</li>                                        
 					<li><a href="index.php">Acerca de</a>
-					</li>
+					</li> -->
 
 				</ul>
 			</nav><!-- Aqui estamos cerrando la nueva etiqueta nav -->

@@ -8,7 +8,11 @@ class TPV extends Controller{
 
     public function showFrontend(){
 
-        $this->render("vistaFrontend",Familia::getFamilias());
+        $this->render("vistaFrontend",['familia'=>Familia::getFamilias()]);
+    }
+
+    public function mostrarProc(){
+        $this->render("vistaFrontend",['familia'=>Familia::getFamilias(),'producto'=>Producto::verProductos($this->get('id_familia'))]);
     }
 
     public function showBackend(){
@@ -18,3 +22,4 @@ class TPV extends Controller{
 }
 
 ?>
+

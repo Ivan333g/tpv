@@ -2,6 +2,7 @@
 
 namespace Profesor\ProyecFin\models;
 
+use Profesor\ProyecFin\config\Constantes;
 use Profesor\ProyecFin\lib\Model;
 
 class Familia extends Model{
@@ -9,7 +10,7 @@ class Familia extends Model{
     public $nombre;
     public $img;
 
-    public function __construct($nombre,$img, $id_familia=0){
+    public function __construct($nombre,$img, $id_familia=null){
         $this->id_familia = $id_familia;
         $this->nombre = $nombre;
         $this->img = $img;
@@ -36,14 +37,16 @@ class Familia extends Model{
         $query->execute(['nombre'=>$this->nombre,
        'img'=>$this->img]);
     }
-    public function delete(){
+    public function deleteFami(){
+        unlink($_SERVER['DOCUMENT_ROOT'].Constantes::$RUTAIMG.$this->img);
         $query = $this->prepare('DELETE FROM familias WHERE id_familia= :id_familia');
         $query->execute(['id_familia'=>$this->id_familia]);
     }
     public function update(){
-        $query = $this->prepare('UPDATE familias SET nombre=:nombre WHERE id_familia=:id_familia');
-        $query->execute(['codigo'=>$this->id_familia,
-         'nombre'=>$this->nombre]);   
+        $query = $this->prepare('UPDATE familias SET nombre=:nombre, img=:img WHERE id_familia=:id_familia');
+        $query->execute(['id_familia'=>$this->id_familia,
+         'nombre'=>$this->nombre,'img'=>$this->img]);  
+         echo $this->id_familia;
     }
 
 

@@ -1,6 +1,11 @@
 <?php
 include_once "menudesplegable.php";
 ?>
+<style>
+table{
+    background-color: white;
+}
+    </style>
 
 <article>
     <table border="1">
@@ -24,8 +29,8 @@ include_once "menudesplegable.php";
                 echo "<td>" . $con->descripcion . "</td>";
                 echo "<td>" . $con->id_familia . "</td>";
                 echo "<td><img src='./img/".$con->img."' class='img'></td>";
-                // echo "<td><a href='index.php?tabla=Producto&action=Editar&codigo=" . $con->id_producto . "&nombre_corto=" . $con->nombre_corto ."&precio=".$con->PVP."&familia=".$con->familia."&descripcion=".$con->descripcion."'>Editar</a><br>";
-                // echo "<a href='index.php?tabla=Producto&action=Eliminar&codigo=" . $con->id_producto . "'>Elminar</a></td>";
+                echo "<td><a href='index.php?tabla=Producto&action=Editar&id_producto=" .$con->id_producto."&precio=" .$con->precio."&nombre=".$con->nombre."&descripcion=".$con->descripcion."&id_familia=".$con->id_familia."'>Editar</a><br>";
+                echo "<a href='index.php?tabla=Producto&action=Eliminar&id_producto=" .$con->id_producto."&img=".$con->img."'>Elminar</a></td>";
                 echo "</tr>";
             }
         }

@@ -22,17 +22,19 @@ class ControllerFamilia extends Controller  {
     }
     
     public function delete(){
-        $this->familia=new Familia($this->get('codigo'),"");
-        $this->familia->delete();
+        $this->familia=new Familia("",$this->get('img'),$this->get('id_familia'));
+        $this->familia->deleteFami();
         $this->render("listarFamilias", Familia::getFamilias());
     }
+
+    public function edit(){
+        $this->render("crearFamilia", ['op'=>'Actualizar','id_familia'=>$this->get('id_familia'),'nombre'=>$this->get('nombre')]);
+    } 
+
     public function update(){
-        $this->familia= new Familia($this->get('codigo'), $this->get('nombre'));
+        $this->familia= new Familia($this->get('nombre'), $this->controImg('img'),$this->get('id_familia'));
         $this->familia->update();
         $this->render("listarFamilias", Familia::getFamilias());
     }
-    public function edit(){
-        $this->render("crearFamilia", ['op'=>'Actualizar','codigo'=>$this->get('codigo'),'nombre'=>$this->get('nombre')]);
-
-    }    
+       
 }

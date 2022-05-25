@@ -6,7 +6,6 @@ use Profesor\ProyecFin\models\Familia;
 
 class ControllerProducto extends Controller {
     private Producto $proc;
-    private Familia $fami;
     public function list(){
         $this->render("listarProductos", Producto::getProductos());
     }
@@ -24,31 +23,23 @@ class ControllerProducto extends Controller {
 
 
     public function delete(){
-
-        $this->proc=new Producto($this->get('codigo'),"","","","","");
+        $this->proc=new Producto(0,"",$this->get('img'),"","",$this->get('id_producto'));
         $this->proc->delete();
         $this->render("listarProductos", Producto::getProductos());
     }
 
+    //lleva a la pantalla para editar
+    public function edit(){
+        $this->render("crearProducto", ['op'=>'Actualizar','precio'=>$this->get('precio'),
+        'nombre'=>$this->get('nombre'),'id_familia' => $this->get('id_familia'),
+        'descripcion'=> $this->get('descripcion'),'id_producto'=>$this->get('id_producto'),'Familia'=>Familia::getFamilias()]);
+    }
+
     public function update(){
-        $this->proc= new Producto($this->get('codigo'),null, $this->get('nombre_corto'),$this->get('precio'),$this->get('familia'),$this->get("descripcion"));
+        $this->proc= new Producto($this->get('precio'),$this->get('nombre'),$this->controImg("img"),$this->get('id_familia'),$this->get("descripcion"),$this->get('id_producto'));
         $this->proc->update();
         $this->render("listarProductos", Producto::getProductos());
     }
-    
-    //ver porque no muestra los productos al actualizar
-    public function edit(){
-    $this->render("crearProducto", ['op'=>'Actualizar','codigo'=>$this->get('codigo'),
-    'nombre_corto'=>$this->get('nombre_corto'),'precio'=>$this->get('precio'),'familia' => $this->get('familia'),
-    'descripcion'=> $this->get('descripcion')]);
-    }
-
-
-    public function getStock(){
-        $this->render("listarStock", Stock::getStocks());        
-
-    }
-
 
 }
 

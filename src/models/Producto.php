@@ -2,6 +2,7 @@
 
 namespace Profesor\ProyecFin\models;
 
+use Profesor\ProyecFin\config\Constantes;
 use Profesor\ProyecFin\lib\Model;
 
 class Producto extends Model{
@@ -30,7 +31,7 @@ class Producto extends Model{
         $productos = [];
         $datos = self::query("SELECT id_producto,precio,descripcion,id_familia,nombre,img FROM productos");
         while ($p = $datos->fetch()) {
-            $productos[] = new Producto($p['precio'], $p['nombre'], $p['img'], $p['id_familia'], $p['id_producto'],$p['descripcion']);
+            $productos[] = new Producto($p['precio'], $p['nombre'], $p['img'], $p['id_familia'], $p['descripcion'],$p['id_producto']);
         }
         return $productos;
     }
@@ -42,19 +43,39 @@ class Producto extends Model{
         return ($p) ? new Producto($p['precio'], $p['nombre'], $p['img'], $p['id_familia'], $p['id_producto'],$p['descripcion']) : null;
     }
 
-    //mi funcion inserta ojear revisar las tablas
+    //mi funcion inserta 
     public function inserta(){
         $query = $this->prepare('INSERT INTO productos (id_producto,precio,descripcion,id_familia,nombre,img) VALUES (:id_producto,:precio,:descripcion,:id_familia,:nombre,:img)');
         $query->execute(['id_producto'=>$this->id_producto,'precio'=>$this->precio,
         'descripcion'=>$this->descripcion,'id_familia'=>$this->id_familia, 'nombre'=>$this->nombre,'img'=>$this->img]);
-    }
-    //actualizar copiada (ponerla para productos)
-    public function actualiza(){
-        $datos=array("nombre"=>$this->nombre, "telefono"=>$this->telefono);
-        $resultado=self::setDatosWS("contactos",json_encode($datos),"PUT",$this->codigo);
         
     }
+    //eliminar producto
+    public function delete(){
+        //podria ser solo una funcion en el controlodor de lib
+        unlink($_SERVER['DOCUMENT_ROOT'].Constantes::$RUTAIMG.$this->img);
+        $query = $this->prepare('DELETE FROM productos WHERE id_producto=:id_producto');
+        $query->execute(['id_producto'=>$this->id_producto]);
+    }
+    //actualiza el producto en la base de datos
+    public function update(){
+        $query = $this->prepare('UPDATE productos SET precio=:precio, descripcion=:descripcion, nombre=:nombre, id_familia=:id_familia,img=:img WHERE id_producto=:id_producto');
+        $query->execute(['id_producto'=>$this->id_producto,
+        'precio'=>$this->precio,'descripcion'=>$this->descripcion,'nombre'=>$this->nombre,'id_familia'=>$this->id_familia,'img'=>$this->img]);
+    }
 
+    public static function verProductos($id_familia){
+        $proc=[];
+        $datos = self::query("SELECT id_producto,precio,descripcion,productos.id_familia,productos.nombre,productos.img
+        from familias INNER join productos
+        where familias.id_familia=$id_familia and productos.id_familia=$id_familia" );
+        while ($p = $datos->fetch()) {
+            $proc[] = new Producto($p['precio'], $p['nombre'],$p['img'],$p['id_familia'], $p['descripcion'],$p['id_producto']);
+           
+        }
+        
+        return $proc;
+    }
 //     public function __get($prop){
 //         return $this->$prop;
 //     }
