@@ -8,12 +8,11 @@ use Profesor\ProyecFin\lib\Model;
 class Producto extends Model{
 
     public $id_producto;
-    public $precio;
+    public float $precio;
     public $descripcion;
     public $id_familia;
     public $nombre;
     public $img;
-    
     public $unidades;
 
     public function __construct($precio,$nombre,$img,$id_familia,$descripcion, $id_producto=null)
@@ -40,7 +39,7 @@ class Producto extends Model{
         $query = self::prepare("SELECT id_producto,precio,descripcion,id_familia,nombre,img FROM productos WHERE id_producto= :id_producto");
         $query->execute(['id_producto' => $codigo]);
         $p = $query->fetch();
-        return ($p) ? new Producto($p['precio'], $p['nombre'], $p['img'], $p['id_familia'], $p['id_producto'],$p['descripcion']) : null;
+        return ($p) ? new Producto($p['precio'], $p['nombre'], $p['img'], $p['id_familia'], $p['descripcion'],$p['id_producto']) : null;
     }
 
     //mi funcion inserta 

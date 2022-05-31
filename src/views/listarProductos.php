@@ -3,20 +3,20 @@ include_once "menudesplegable.php";
 ?>
 <style>
 table{
-    background-color: white;
+    background-color: #C299E5;
 }
     </style>
 
 <article>
-    <table border="1">
+    <table class="table table-striped">
         <thead>
-            <td>id_producto</td>
-            <td>precio</td>
-            <td>nombre</td>
-            <td>descripcion</td>
-            <td>id_familia</td>
-            <td>img</td>
-            <td>opciones</td>
+            <th scope="col">id_producto</th>
+            <th scope="col">precio</th>
+            <th scope="col">nombre</th>
+            <th scope="col">descripcion</th>
+            <th scope="col">id_familia</th>
+            <th scope="col">img</th>
+            <th scope="col">opciones</th>
             </thead>
         <?php
 

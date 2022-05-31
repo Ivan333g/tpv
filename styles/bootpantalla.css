@@ -49,10 +49,13 @@
 
 .botones2{
     margin:10px;
+    
 }
 
-.mol{
-    background-color:red
+.bordeBotones{
+    width:60px;
+    height:100px;
+    border:solid 2px black;
 }
 
 .centrado{
@@ -61,3 +64,16 @@
     left: 50%;
     transform: translate(-50%, -50%);
     color:red;}
+
+.total{
+    display:flex;
+    justify-content:flex-end;
+    padding:5px;
+    background-color: cadetblue;
+    flex-direction:row;
+}
+
+.grupBotones{
+    width:85px;
+    height:100%;
+}

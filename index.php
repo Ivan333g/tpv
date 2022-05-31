@@ -48,7 +48,23 @@ if (isset($_REQUEST['action'])) {
         case 'VerProductos':
             $tpv->mostrarProc();
             break;
-        
+        //servira para añadir productos a la pantalla de la cuenta    
+        case 'Añadir':
+            $tpv->addProductoPantalla();
+            $tpv->mostrarProc();
+            break;
+        //quita de la cuenta el producto seleccionado
+        case 'Quitar':
+            $tpv->quitarCuenta();
+            break;
+        //sirve para sacar el ticket
+        case 'Comprar':
+            $tpv->buyCuenta();
+            break;
+        //pagar la cuenta
+        case 'Pagar':
+            //$tienda->payCuenta();
+            break;
         //si no tiene accion le montrara para logearse
         default:
             $login->showLogin();

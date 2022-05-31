@@ -1,109 +1,60 @@
 <html>
 	<head>
 		<title>Tpv Interno</title>
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+        <link rel="stylesheet" type="text/css" href="./styles/menudesple.css">
 		<style type="text/css">
 			.img{ 
-    margin:5px;       
-    width:150px;
-    height:120px;
-}
-.body{background-image: url('http://getwallpapers.com/wallpaper/full/a/5/d/544750.jpg');
-	background-size: cover;
-background-repeat: no-repeat;
-height: 100%;
-font-family: 'Numans', sans-serif;
-}
-			* {
-				margin:0px;
-				padding:0px;
-			}
-			
-			#header {
-				margin:auto;
-				width:500px;
-				font-family:Arial, Helvetica, sans-serif;
-			}
-			
-			ul, ol {
-				list-style:none;
-			}
-			
-			.nav {
-				width:500px; /*Le establecemos un ancho*/
-				margin:0 auto; /*Centramos automaticamente*/
-			}
- 
-			.nav > li {
-				float:left;
-			}
-			
-			.nav li a {
-				background-color:#000;
-				color:#fff;
-				text-decoration:none;
-				padding:10px 12px;
-				display:block;
-			}
-			
-			.nav li a:hover {
-				background-color:#434343;
-			}
-			
-			.nav li ul {
-				display:none;
-				position:absolute;
-				min-width:140px;
-			}
-			
-			.nav li:hover > ul {
-				display:block;
-			}
-			
-			.nav li ul li {
-				position:relative;
-			}
-			
-			.nav li ul li ul {
-				right:-140px;
-				top:0px;
-			}
-			
-		</style>
-	</head>
-	<body class="body">
-		<div id="header">
-			<nav> <!-- Aqui estamos iniciando la nueva etiqueta nav -->
-				<ul class="nav">
-					<li><a href="index.php">salir</a></li>
-					<li><a href="">Agregar</a>
-						<ul>
-							<li><a href="index.php?tabla=Producto&action=Crear">Productos</a></li>
-							<li><a href="index.php?tabla=Familia&action=Crear">Familias</a></li>
-						</ul>
-					</li>
-					<li><a href="">listar</a>
-						<ul>
-						<li><a href="index.php?tabla=Producto&action=Listar">Productos</a></li>
-							<li><a href="index.php?tabla=Familia&action=Listar">Familias</a></li>
- 
-						</ul>
-					</li>
-					<!-- <li><a href="">Tiendas</a>
-						<ul>
-							<li><a href="index.php?tabla=Tienda&action=Crear">Crear</a></li>
-							<li><a href="index.php?tabla=Tienda&action=Listar">Listar</a></li>
-                            <li><a href="index.php?tabla=Tienda&action=Stock">Stock</a></li>
-						</ul>
-					</li>                                        
-					<li><a href="index.php">Acerca de</a>
-					</li> -->
-
-				</ul>
-			</nav><!-- Aqui estamos cerrando la nueva etiqueta nav -->
-		</div>
-		<br>
-		<br>
-		<br>
-		
-	</body>
-</html>
+                margin:5px;       
+                width:150px;
+                height:120px;
+            }
+            .body{background-image: url('http://getwallpapers.com/wallpaper/full/a/5/d/544750.jpg');
+                background-size: cover;
+            background-repeat: no-repeat;
+            height: 100%;
+            font-family: 'Numans', sans-serif;
+            }
+        </style>
+    </head>
+<body class="body">
+<div id="container">
+    <nav>
+        <ul>
+            <!-- Primer Menu Desplegable -->
+            <!---podra dar un ejemplo de como crear un producto--->
+            <li><a href="index.php?tabla=Producto&action=Crear">Crear <i class="down"></i></a>
+            <ul>
+                <li><a href="index.php?tabla=Producto&action=Crear">Productos</a></li>
+				<li><a href="index.php?tabla=Familia&action=Crear">Familias</a></li>
+				<li><a href="index.php?tabla=Usuario&action=Crear">Usuarios</a></li>
+				<li><a href="index.php?tabla=Mesa&action=Crear">Mesas</a></li>
+            </ul>        
+            </li>
+            <li><a href="index.php?tabla=Producto&action=Listar">listar <i class="down"></i></a>
+             <!-- Primer Menu Desplegable -->
+            <ul>
+                <li><a href="index.php?tabla=Producto&action=Listar">Productos</a></li>
+				<li><a href="index.php?tabla=Familia&action=Listar">Familias</a></li>
+				<li><a href="index.php?tabla=Usuario&action=Listar">Usuarios</a></li>
+				<li><a href="index.php?tabla=Mesa&action=Listar">Mesas</a></li>
+               <!-- Segudo Menu Desplegable -->
+                <!-- <ul>
+                    <li><a href="#">WhiteBoards</a></li>
+                    <li><a href="#">Presentaciones</a></li>
+                    <li><a href="#">Otros</a> -->
+                         <!-- Tercer Menu Desplegable -->
+                        <!-- <ul>
+                            <li><a href="#">Stuff</a></li>
+                            <li><a href="#">Things</a></li>
+                            <li><a href="#">Other Stuff</a></li>
+                        </ul>
+                    </li>
+                </ul> -->
+            </li>
+            </ul>
+            </li>
+           
+        </ul>
+    </nav>
+</div>

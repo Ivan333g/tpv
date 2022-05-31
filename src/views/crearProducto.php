@@ -36,7 +36,7 @@ include "menudesplegable.php";
 
 <!-- rebisar para que puda agregar productos con su nombrecorto -->
         <br>
-        <span>Introduce el precio del producto: </span> <input type="number" name="precio" value="<?php echo (isset($this->datos['precio']) ? $this->datos['precio'] : "") ?>" placeholder="Precio" > 
+        <span>Introduce el precio del producto: </span> <input step="any" type="number" name="precio" value="<?php echo (isset($this->datos['precio']) ? $this->datos['precio'] : "") ?>" placeholder="Precio" > 
 
         <br> <br>
         <span>Introduce el nombre del producto: </span> <input type="text" name="nombre" value="<?php echo (isset($this->datos['nombre']) ? $this->datos['nombre'] : "") ?>" placeholder="Nombre"> <br> <br>

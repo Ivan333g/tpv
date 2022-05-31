@@ -7,7 +7,6 @@ if (!isset($_SESSION['usuario'])) {
      die("Error - debe <a href='..\..\index.php'>identificarse</a>.<br/>");
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -18,48 +17,85 @@ if (!isset($_SESSION['usuario'])) {
     <link rel="stylesheet" type="text/css" href="./styles/bootpantalla.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 </head>
-<body class="bg-dark">
+<!-- <body class="bg-dark"> -->
+<body style="background-image:url('http://getwallpapers.com/wallpaper/full/a/5/d/544750.jpg')">
     <div class="container bg-info">
         <div class="row mt-3">
             
             <div class="col-7 mt-2 border border-dark cuenta p-2" >
                 <div id="productos">
                     <table class="table" id="tabla">
-                       <tr><th>cantidad</th><th>producto</th><th>precio</th></tr>
+                        <?php
+                        // Si la cesta está vacía, mostramos un mensaje
+                        $cuenta_vacia = $this->datos['cuenta']->isEmpty();
+                        if ($cuenta_vacia) {
+                            print '<tr><th>Cantidad</th><th>Producto</th><th>Precio</th><th>Opcion</th></tr>';
+                        } else {
+                            ?>
+                       <tr><th>Cantidad</th><th>Producto</th><th>Precio</th><th>Opciones</th></tr>
+                            <?php     
+                            foreach($this->datos['cuenta']->getProductos() as $producto) {
+                                echo "<tr><td>".$producto->unidades."</td>";
+                                echo "<td>".$producto->nombre."</td>";
+                                echo "<td>".$producto->precio."</td>";
+                                echo "<form id='quitar' action='index.php' method='post'>";
+                                echo "<input type='hidden' name='id_producto' value='".$producto->id_producto."'/>";                          
+                                echo "<td><input type='submit' class='btn btn-danger' name='action' value='Quitar'/></td></tr>";
+                            }
+                            echo "</table>";
+                            $cuenta_vacia = false;
+                            echo "<div class='total'><h5>total:".$this->datos['cuenta']->getCoste()."</h5></div>";
+                        }   ?>
                     </table>
                 </div>
             </div>
 
-            <!-- eliminar
+            <!-- cancelar
                 orden a cocina
-                finalizar
-                introducir codigo producto
-                1234567890 -->
+                finalizar-->
             <div class="col mt-2 border border-dark botones">
-                <div class="border border-dark mol">
-                    4
+                <div class="row">
+
+                    <div class="col-3 m-3 border border-dark bordeBotones">
+                        cancelar
+                    </div>
+
+                    <div class="col-3 m-3 border border-dark bordeBotones">
+                        elegir mesa
+                    </div>
+
+                    <div class="col-3 m-3 border border-dark bordeBotones">
+                    <!--ver porque hace que no funcione el quitar--->
+                    <form action='index.php' method='post'>
+                        <input type='submit' class='grupBotones' name='action' value='Comprar'/>
+                    </form>
+                    </div>
+
+                    <div class="col-3 m-3 border border-dark bordeBotones">
+                        cierre de caja
+                    </div>
+
+                    <div class="col-3 m-3 border border-dark bordeBotones">
+                        orden en cocina
+                    </div>
+
+                    <div class="col-3 m-3 border border-dark bordeBotones">
+                        nose que mas
+                    </div>
                 </div>
             </div>
             
             <div class="col-11 border border-dark producto">
                 <div class="ordenimg">
-                    <!-- <button id="vino" class="botones2"><img src="./styles/vino.jpg" class="botonesi"></button>
-                    <button id="boca" class="botones2"><img src="boca.jpg" class="botonesi"></button>
-                    <button id="vino" class="botones2"><img src="vino.jpg" class="botonesi"></button>
-                    <button id="boca" class="botones2"><img src="boca.jpg" class="botonesi"></button>
-                    <button id="vino" class="botones2"><img src="vino.jpg" class="botonesi"></button>
-                    <button id="boca" class="botones2"><img src="boca.jpg" class="botonesi"></button>
-                    <button id="vino" class="botones2"><img src="vino.jpg" class="botonesi"></button>
-                    <button id="boca" class="botones2"><img src="boca.jpg" class="botonesi"></button>
-                    <button id="boca" class="botones2"><img src="boca.jpg" class="botonesi"></button>
-                    <button id="vino" class="botones2"><img src="vino.jpg" class="botonesi"></button>
-                    <button id="boca" class="botones2"><img src="boca.jpg" class="botonesi"></button>
-                    <button id="vino" class="botones2"><img src="vino.jpg" class="botonesi"></button>
-                    <button id="boca" class="botones2"><img src="boca.jpg" class="botonesi"></button>
-                    <button id="vino" class="botones2"><img src="./styles/vino.jpg" class="botonesi"></button> -->
                     <?php
                     foreach ($this->datos['producto'] as $producto) {
-                        echo "<button class='botones2'><img src='./img/".$producto->img."' class='botonesi'></button>";
+                        echo "<p><form id_producto='{$producto->id_producto}' action='index.php' method='post'>";
+                        echo "<input type='hidden' name='id_familia' value='" . $producto->id_familia . "'/>";
+                        echo "<input type='hidden' name='producto' value='" . $producto->id_producto . "'/>";
+                        echo "<input type='hidden' name='nombre' value='" . $producto->nombre . "'/>";
+                        echo "<input type='hidden' name='precio' value='" . $producto->precio . "'/>";
+                        echo "<button name='action' value='Añadir' class='botones2'><img src='./img/".$producto->img."' class='botonesi'></button>";
+                        echo '</form>';
                         //ver porque esta invertido el id y el nombre
                         // echo "<a href='index.php?action=VerProductos&id_familia=$familia->id_familia&nombre=$familia->nombre'
                         // ><img src='./img/".$familia->img."' class='img'></a>";
@@ -70,18 +106,6 @@ if (!isset($_SESSION['usuario'])) {
 
             <div class="col border border-dark familia">
                 <div class="ordenimg">
-                <!-- <a href="https://www.google.com/" ><img src="./styles/boca.jpg" class="img"><div style="text-align:50%; color:black" >poca</div></a>
-                <a href="https://www.youtube.com/"><img src="vino.jpg" class="img"></a>
-                <a href="https://www.google.com/"><img src="boca.jpg" class="img"></a>
-                <a href="https://www.youtube.com/"><img src="vino.jpg" class="img"></a>
-                <a href="https://www.google.com/"><img src="boca.jpg" class="img"></a>
-                <a href="https://www.youtube.com/"><img src="vino.jpg" class="img"></a>
-                <a href="https://www.google.com/"><img src="boca.jpg" class="img"></a>
-                <a href="https://www.youtube.com/"><img src="vino.jpg" class="img"></a>
-                <a href="https://www.google.com/"><img src="boca.jpg" class="img"></a>
-                <a href="https://www.youtube.com/"><img src="vino.jpg" class="img"></a>
-                <a href="https://www.google.com/"><img src="boca.jpg" class="img"></a>
-                <a href="https://www.youtube.com/"><img src="vino.jpg" class="img"></a> -->
                 <?php
                 foreach ($this->datos['familia'] as $familia) {
                     //ver porque esta invertido el id y el nombre
