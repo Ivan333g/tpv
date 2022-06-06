@@ -15,7 +15,7 @@ class Producto extends Model{
     public $img;
     public $unidades;
 
-    public function __construct($precio,$nombre,$img,$id_familia,$descripcion, $id_producto=null)
+    public function __construct($precio,$nombre,$img,$id_familia,$descripcion, $id_producto=null,$unidades=1)
     {
         $this->id_producto = $id_producto;
         $this->precio = $precio;
@@ -23,7 +23,7 @@ class Producto extends Model{
         $this->id_familia = $id_familia;
         $this->nombre = $nombre;
         $this->img = $img;
-        $this->unidades = 1;
+        $this->unidades = $unidades;
     }
 
     public static function getProductos(){

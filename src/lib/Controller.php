@@ -9,9 +9,13 @@ class Controller{
         $this->view = new View();
 
     }
-
-    public function render(string $name, $data){
-        $this->view->render($name,$data);
+    //funcion para las vistas de la parte frond
+    public function renderFr(string $name, $data){
+        $this->view->renderFr($name,$data);
+    }
+    //funcion para las vistas de la parte back
+    public function renderBa(string $name, $data){
+        $this->view->renderBa($name,$data);
     }
 
     //este metodo solo comprueba si el get o post enviado no esta vacio

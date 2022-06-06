@@ -55,7 +55,7 @@ if (isset($_REQUEST['action'])) {
             break;
         //quita de la cuenta el producto seleccionado
         case 'Quitar':
-            $tpv->quitarCuenta();
+            $tpv->quitarCuenta($_SESSION['mesa']);
             break;
         //sirve para sacar el ticket
         case 'Comprar':
@@ -63,8 +63,21 @@ if (isset($_REQUEST['action'])) {
             break;
         //pagar la cuenta
         case 'Pagar':
-            //$tienda->payCuenta();
+            //$tpv->payCuenta();
             break;
+        //despues de elegir la mesa se podra ver el tpv
+        case 'Mesa':
+            $_SESSION['mesa']=$_POST['num_mesa'];
+            $tpv->mostrarProc();
+            break;
+        //regresara a las mesas para elegir otra
+        case 'Mesas':
+            $tpv->showMesas();
+        break;
+        //desconecta al usuario conectado
+        case 'Desconectar':
+            $tpv->closeSesion();
+        break;
         //si no tiene accion le montrara para logearse
         default:
             $login->showLogin();

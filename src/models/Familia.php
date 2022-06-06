@@ -46,7 +46,6 @@ class Familia extends Model{
         $query = $this->prepare('UPDATE familias SET nombre=:nombre, img=:img WHERE id_familia=:id_familia');
         $query->execute(['id_familia'=>$this->id_familia,
          'nombre'=>$this->nombre,'img'=>$this->img]);  
-         echo $this->id_familia;
     }
 
 

@@ -5,6 +5,7 @@ if (!isset($_SESSION['usuario'])) {
     // header('Location: ../index.php');
     // exit;
      die("Error - debe <a href='..\..\index.php'>identificarse</a>.<br/>");
+     exit;
 }
 ?>
 <!DOCTYPE html>
@@ -25,62 +26,77 @@ if (!isset($_SESSION['usuario'])) {
             <div class="col-7 mt-2 border border-dark cuenta p-2" >
                 <div id="productos">
                     <table class="table" id="tabla">
+                    <form id='quitar' action='index.php' method='post'>
                         <?php
                         // Si la cesta está vacía, mostramos un mensaje
-                        $cuenta_vacia = $this->datos['cuenta']->isEmpty();
+                        $cuenta_vacia = $this->datos['cuenta']->isEmpty($_SESSION['mesa']);
                         if ($cuenta_vacia) {
                             print '<tr><th>Cantidad</th><th>Producto</th><th>Precio</th><th>Opcion</th></tr>';
                         } else {
+
                             ?>
                        <tr><th>Cantidad</th><th>Producto</th><th>Precio</th><th>Opciones</th></tr>
-                            <?php     
-                            foreach($this->datos['cuenta']->getProductos() as $producto) {
+                            <?php 
+                            //aqui mostrara la cuenta dependiendo de la mesa    
+                            foreach($this->datos['cuenta']->getCuenta($_SESSION['mesa']) as $producto) {
                                 echo "<tr><td>".$producto->unidades."</td>";
                                 echo "<td>".$producto->nombre."</td>";
                                 echo "<td>".$producto->precio."</td>";
-                                echo "<form id='quitar' action='index.php' method='post'>";
-                                echo "<input type='hidden' name='id_producto' value='".$producto->id_producto."'/>";                          
-                                echo "<td><input type='submit' class='btn btn-danger' name='action' value='Quitar'/></td></tr>";
+                                // echo "<form id='quitar' action='index.php' method='post'>";
+                                // echo "<input type='hidden' name='id_producto' value='".$producto->id_producto."'/>";
+                                // echo "<td><button class='btn btn-danger' name='action' value='Quitar'>Quitar</button></td></tr>";                       
+                                echo "<td><a href='index.php?action=Quitar&id_producto=$producto->id_producto' class='btn btn-danger' >Quitar</a></td></tr>";
+                                
                             }
+                            
                             echo "</table>";
                             $cuenta_vacia = false;
-                            echo "<div class='total'><h5>total:".$this->datos['cuenta']->getCoste()."</h5></div>";
+                            echo "<div class='total'><h5>total:".$this->datos['cuenta']->getCoste($_SESSION['mesa'])."</h5></div>";
                         }   ?>
+                       
                     </table>
                 </div>
             </div>
 
             <!-- cancelar
                 orden a cocina
-                finalizar-->
+                finalizar
+            este col hace que no sea responsive la parte de los botones
+            -->
             <div class="col mt-2 border border-dark botones">
-                <div class="row">
+                <div class="row row-cols-4">
+                    <div class="m-3 bg-light border border-dark bordeBotones">
+                        <!-- <form action='index.php' method='post'> -->
+                        <input type='submit' class='botonMesa' name='action' value='Mesas'/>
+                        <h4>
+                        <?php
+                            echo "Mesa:".$_SESSION['mesa'];
+                        ?>
+                        </h4>
+                        <!-- </form> -->
+                    </div>
 
-                    <div class="col-3 m-3 border border-dark bordeBotones">
+                    <div class=" m-3 bg-secondary border border-dark bordeBotones">
                         cancelar
                     </div>
 
-                    <div class="col-3 m-3 border border-dark bordeBotones">
-                        elegir mesa
-                    </div>
-
-                    <div class="col-3 m-3 border border-dark bordeBotones">
+                    <div class=" m-3 bg-light border border-dark bordeBotones">
                     <!--ver porque hace que no funcione el quitar--->
-                    <form action='index.php' method='post'>
+                    <!-- <form action='index.php' method='post'> -->
                         <input type='submit' class='grupBotones' name='action' value='Comprar'/>
-                    </form>
+                    <!-- </form> -->
                     </div>
 
-                    <div class="col-3 m-3 border border-dark bordeBotones">
+                    <div class=" m-3 bg-secondary border border-dark bordeBotones">
                         cierre de caja
                     </div>
 
-                    <div class="col-3 m-3 border border-dark bordeBotones">
+                    <div class=" m-3 bg-secondary border border-dark bordeBotones">
                         orden en cocina
                     </div>
 
-                    <div class="col-3 m-3 border border-dark bordeBotones">
-                        nose que mas
+                    <div class="m-3 bg-light border border-dark bordeBotones">
+                    <input type='submit' class='grupBotones' name='desconectar' value='Desconectar'/>
                     </div>
                 </div>
             </div>
@@ -88,11 +104,12 @@ if (!isset($_SESSION['usuario'])) {
             <div class="col-11 border border-dark producto">
                 <div class="ordenimg">
                     <?php
+                    //aqui mostrara los productos para seleccionar y agregarlo a la cuenta
                     foreach ($this->datos['producto'] as $producto) {
                         echo "<p><form id_producto='{$producto->id_producto}' action='index.php' method='post'>";
                         echo "<input type='hidden' name='id_familia' value='" . $producto->id_familia . "'/>";
                         echo "<input type='hidden' name='producto' value='" . $producto->id_producto . "'/>";
-                        echo "<input type='hidden' name='nombre' value='" . $producto->nombre . "'/>";
+                        echo "<input type='hidden' name='num_mesa' value='" . $_SESSION['mesa'] . "'/>";
                         echo "<input type='hidden' name='precio' value='" . $producto->precio . "'/>";
                         echo "<button name='action' value='Añadir' class='botones2'><img src='./img/".$producto->img."' class='botonesi'></button>";
                         echo '</form>';
@@ -107,8 +124,8 @@ if (!isset($_SESSION['usuario'])) {
             <div class="col border border-dark familia">
                 <div class="ordenimg">
                 <?php
+                //aqui mostrar todas las familias a elegir
                 foreach ($this->datos['familia'] as $familia) {
-                    //ver porque esta invertido el id y el nombre
                     echo "<a href='index.php?action=VerProductos&id_familia=$familia->id_familia&nombre=$familia->nombre'
                     ><img src='./img/".$familia->img."' class='img'></a>";
                 }
@@ -118,12 +135,8 @@ if (!isset($_SESSION['usuario'])) {
 
         </div>
     </div>
-    <script src="agregador.js"></script>
-
-
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-
-
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>    
+<script src="ejem.js"></script>
 </body>
 </html>

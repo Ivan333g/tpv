@@ -19,19 +19,19 @@ class Login extends Controller{
                 $_SESSION['usuario'] = $user;
                 $tpv = new TPV;
                 if ($rol == 'admin') {
-                    $tpv->showBackend();
+                    $tpv->mostrarProc();
                 } else {
-                    $tpv->showFrontend();
+                    $tpv->showMesas();
                 }
                 exit;
             } else {
                 $datos = ["error" => "Usuario o contraseña no válidos!"];
             }
         }
-        $this->render("login", $datos);
+        $this->renderFr("login", $datos);
     }
 
     public function showLogin(){
-        $this->render("login", ["error" => ""]);
+        $this->renderFr("login", ["error" => ""]);
     }
 }
