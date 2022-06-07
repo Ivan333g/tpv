@@ -8,23 +8,27 @@ use Profesor\ProyecFin\models\Producto;
 use Profesor\ProyecFin\models\PantallaCuenta;
 
 class TPV extends Controller{
-    private PantallaCuenta $cuenta;
-    private Cuenta $cuenta2;
+    // private PantallaCuenta $cuenta;
+    private Cuenta $cuenta;
 
     public function __construct(){
         parent::__construct();
-        $this->cuenta2=new Cuenta(0,0,0);
+        $this->cuenta=new Cuenta(0,0,0);
     }
 
     public function showMesas(){
-        $this->renderFr("elegirMesas", Mesa::getMesas());
+        $this->renderFr("elegirMesas", ['mesas'=>Mesa::getMesas(),'orden'=>Cuenta::estados()]);
+    }
+
+    public function enOrden(){
+        Cuenta::enOrden($this->get('mesa'));
     }
 
     public function mostrarProc(){
         if($this->get('id_familia')==null){
-            $this->renderFr("vistaFrontend",['familia'=>Familia::getFamilias(),'producto'=>Producto::verProductos(1),"cuenta"=>$this->cuenta2]);
+            $this->renderFr("vistaFrontend",['familia'=>Familia::getFamilias(),'producto'=>Producto::verProductos(1),"cuenta"=>$this->cuenta]);
         }else{
-            $this->renderFr("vistaFrontend",['familia'=>Familia::getFamilias(),'producto'=>Producto::verProductos($this->get('id_familia')),"cuenta"=>$this->cuenta2]);
+            $this->renderFr("vistaFrontend",['familia'=>Familia::getFamilias(),'producto'=>Producto::verProductos($this->get('id_familia')),"cuenta"=>$this->cuenta]);
         }
     }
 
@@ -33,16 +37,16 @@ class TPV extends Controller{
     }
 
     public function addProductoPantalla(){
-        $this->cuenta2=new Cuenta($this->get('producto'),$this->get('num_mesa'));
-        if($this->cuenta2->esta()){
-            $this->cuenta2->update();
+        $this->cuenta=new Cuenta($this->get('producto'),$this->get('num_mesa'));
+        if($this->cuenta->esta()){
+            $this->cuenta->update();
         }else{
-            $this->cuenta2->insert();
+            $this->cuenta->insert();
         }
     }
 
     public function quitarCuenta($mesa){
-        $this->cuenta2->quitar($this->get('id_producto'),$mesa);
+        $this->cuenta->quitar($this->get('id_producto'),$mesa);
         $this->mostrarProc();
     }
 
@@ -50,10 +54,13 @@ class TPV extends Controller{
         $this->renderFr("cuenta",["cuenta"=>$this->cuenta]);
     }
 
+    public function cancelar(){
+        $this->cuenta->cancelar($this->get('mesa'));
+    }
+
     public function closeSesion(){
-        session_destroy();
-        //header("Location: ./views/frontend/login.php");
-        // $this->renderFr("logoff",[""]);
+        
+        $this->renderFr("logoff",["error"=>'']);
     }
      //mee 
     //terminar la parte del render

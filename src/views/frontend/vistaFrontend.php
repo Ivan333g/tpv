@@ -4,7 +4,7 @@ error_reporting(E_ALL);
 if (!isset($_SESSION['usuario'])) {
     // header('Location: ../index.php');
     // exit;
-     die("Error - debe <a href='..\..\index.php'>identificarse</a>.<br/>");
+    die("Error - debe <a href='../../../index.php'>identificarse</a>.<br/>");
      exit;
 }
 ?>
@@ -58,14 +58,14 @@ if (!isset($_SESSION['usuario'])) {
                 </div>
             </div>
 
-            <!-- cancelar
-                orden a cocina
+            <!-- 
                 finalizar
             este col hace que no sea responsive la parte de los botones
             -->
             <div class="col mt-2 border border-dark botones">
                 <div class="row row-cols-4">
-                    <div class="m-3 bg-light border border-dark bordeBotones">
+                    <div class="m-3 bg-secondary border border-dark bordeBotones">
+                        <!--regresara a la pantalla de las mesas-->
                         <!-- <form action='index.php' method='post'> -->
                         <input type='submit' class='botonMesa' name='action' value='Mesas'/>
                         <h4>
@@ -77,13 +77,15 @@ if (!isset($_SESSION['usuario'])) {
                     </div>
 
                     <div class=" m-3 bg-secondary border border-dark bordeBotones">
-                        cancelar
+                        <!---quitara todos los productos de la cuenta-->
+                        <input type='hidden' name='mesa' value='<?php echo $_SESSION['mesa'];?>'/>
+                        <input type='submit' class='grupBotones' name='action' value='Cancelar'/>
                     </div>
 
-                    <div class=" m-3 bg-light border border-dark bordeBotones">
+                    <div class=" m-3 bg-secondary border border-dark bordeBotones">
                     <!--ver porque hace que no funcione el quitar--->
                     <!-- <form action='index.php' method='post'> -->
-                        <input type='submit' class='grupBotones' name='action' value='Comprar'/>
+                        <input type='submit' class='grupBotones' name='action' value='Comprar' id='Comprar'/>
                     <!-- </form> -->
                     </div>
 
@@ -92,11 +94,14 @@ if (!isset($_SESSION['usuario'])) {
                     </div>
 
                     <div class=" m-3 bg-secondary border border-dark bordeBotones">
-                        orden en cocina
+                        <!--orden en cocina prondra la cuenta en espera-->
+                        <input type='hidden' name='mesa' value='<?php echo $_SESSION['mesa'];?>'/>
+                        <input type='submit' class='grupBotones' name='action' value='Orden'/>
                     </div>
 
-                    <div class="m-3 bg-light border border-dark bordeBotones">
-                    <input type='submit' class='grupBotones' name='desconectar' value='Desconectar'/>
+                    <div class="m-3 bg-secondary border border-dark bordeBotones">
+                        <!---boton para desconectar el usuario-->
+                        <input type='submit' class='grupBotones' name='action' value='Desconectar'/>
                     </div>
                 </div>
             </div>
@@ -135,6 +140,15 @@ if (!isset($_SESSION['usuario'])) {
 
         </div>
     </div>
+    <div id='popup' style="display: none;">
+                soy un pop up
+    </div>
+
+    <script>
+        document.querySelector("Comprar").addEventListener("click",function(){
+            alert("gola");
+        });
+    </script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>    
 <script src="ejem.js"></script>

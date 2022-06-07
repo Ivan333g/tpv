@@ -1,3 +1,13 @@
+<?php 
+error_reporting(E_ALL);
+// Y comprobamos que el usuario se haya autentificado y existe   
+if (!isset($_SESSION['usuario'])) {
+    // header('Location: ../index.php');
+    // exit;
+     die("Error - debe <a href='../../../index.php'>identificarse</a>.<br/>");
+     exit;
+}
+?>
 <html>
 	<head>
 		<title>Tpv Interno</title>
@@ -51,8 +61,9 @@
                         </ul>
                     </li>
                 </ul> -->
-            </li>
+            <!-- </li>-->
             </ul>
+                <li><a href="index.php?action=Desconectar">Salir</a></li>
             </li>
            
         </ul>

@@ -46,9 +46,9 @@ class Cuenta extends Model{
         $query = $this->prepare('INSERT INTO cuentas (id_producto,num_mesa,cantidad) VALUES (:id_producto, :num_mesa, :cantidad)');
         $query->execute(['id_producto'=>$this->id_producto,'num_mesa'=>$this->num_mesa,'cantidad'=>$this->cantidad]);
     }
-    public function deletePro($id){
-        $query = $this->prepare('DELETE FROM Cuentas WHERE id_producto= :id_producto');
-        $query->execute(['id_producto'=>$id]);
+    public function deletePro($id,$mesa){
+        $query = $this->prepare('DELETE FROM Cuentas WHERE id_producto= :id_producto and num_mesa=:num_mesa');
+        $query->execute(['id_producto'=>$id,'num_mesa'=>$mesa]);
     }
     //si el producto ya se encuentra actualizara la base de datos en la cantidad
     public function update(){
@@ -87,10 +87,27 @@ class Cuenta extends Model{
     public function quitar($id,$mesa){
         $datos = self::query("SELECT cantidad FROM cuentas WHERE id_producto=$id and num_mesa=$mesa");
         if($p = $datos->fetchColumn()==1) {
-            $this->deletePro($id);
+            $this->deletePro($id,$mesa);
         }
         $query = $this->prepare('UPDATE cuentas SET cantidad=cantidad-1 WHERE id_producto=:id_producto and num_mesa=:num_mesa');
         $query->execute(['id_producto'=>$id,'num_mesa'=>$mesa]);
+    }
+
+    public static function enOrden($mesa){
+        $query = self::query('UPDATE cuentas SET estado=1 WHERE num_mesa='.$mesa);
+    }
+    public static function estados(){
+        $num_mesa=[];
+        $datos = self::query('SELECT num_mesa FROM cuentas where estado=1 GROUP by num_mesa');
+        while ($p = $datos->fetch()) {
+            $num_mesa[]=$p['num_mesa'];
+        }
+        return $num_mesa;
+    }
+
+    public function cancelar($mesa){
+        $query = $this->prepare('DELETE FROM cuentas WHERE num_mesa= :num_mesa');
+        $query->execute(['num_mesa'=>$mesa]);
     }
 
     public function __get($prop)
@@ -102,5 +119,6 @@ class Cuenta extends Model{
         $this->$prop = $valor;
     }
 }
+
 
 ?>

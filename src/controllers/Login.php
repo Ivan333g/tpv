@@ -19,7 +19,7 @@ class Login extends Controller{
                 $_SESSION['usuario'] = $user;
                 $tpv = new TPV;
                 if ($rol == 'admin') {
-                    $tpv->mostrarProc();
+                    $tpv->showBackend();
                 } else {
                     $tpv->showMesas();
                 }
