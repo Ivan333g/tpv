@@ -58,12 +58,12 @@ if (isset($_REQUEST['action'])) {
             $tpv->quitarCuenta($_SESSION['mesa']);
             break;
         //sirve para sacar el ticket
-        // case 'Comprar':
-        //     $tpv->buyCuenta();
-        //     break;
+        case 'Comprar':
+            $tpv->buyCuenta();
+            break;
         //pagar la cuenta
         case 'Pagar':
-            //$tpv->payCuenta();
+            $tpv->payCuenta();
             break;
         //despues de elegir la mesa se podra ver el tpv
         case 'Mesa':

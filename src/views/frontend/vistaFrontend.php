@@ -33,7 +33,6 @@ if (!isset($_SESSION['usuario'])) {
                         if ($cuenta_vacia) {
                             print '<tr><th>Cantidad</th><th>Producto</th><th>Precio</th><th>Opcion</th></tr>';
                         } else {
-
                             ?>
                        <tr><th>Cantidad</th><th>Producto</th><th>Precio</th><th>Opciones</th></tr>
                             <?php 
@@ -45,19 +44,16 @@ if (!isset($_SESSION['usuario'])) {
                                 // echo "<form id='quitar' action='index.php' method='post'>";
                                 // echo "<input type='hidden' name='id_producto' value='".$producto->id_producto."'/>";
                                 // echo "<td><button class='btn btn-danger' name='action' value='Quitar'>Quitar</button></td></tr>";                       
-                                echo "<td><a href='index.php?action=Quitar&id_producto=$producto->id_producto' class='btn btn-danger' >Quitar</a></td></tr>";
-                                
+                                echo "<td><a href='index.php?action=Quitar&id_producto=$producto->id_producto' class='btn btn-danger' >Quitar</a></td></tr>"; 
                             }
-                            
                             echo "</table>";
                             $cuenta_vacia = false;
-                            echo "<div class='total'><h5>total:".$this->datos['cuenta']->getCoste($_SESSION['mesa'])."</h5></div>";
+                            echo "<div class='total'><h5>total: ".$this->datos['cuenta']->getCoste($_SESSION['mesa'])."€</h5></div>";
                         }   ?>
-                       
+                    
                     </table>
                 </div>
             </div>
-
             <!-- 
                 finalizar
             este col hace que no sea responsive la parte de los botones
@@ -85,7 +81,7 @@ if (!isset($_SESSION['usuario'])) {
                     <div class=" m-3 bg-secondary border border-dark bordeBotones">
                     <!--ver porque hace que no funcione el quitar--->
                     <!-- <form action='index.php' method='post'> -->
-                        <input type='submit' class='grupBotones' name='action' value='Comprar' id='Comprar'/>
+                        <input type='submit' class='grupBotones' name='action' value='Comprar' id='Comprar'>
                     <!-- </form> -->
                     </div>
 
@@ -140,15 +136,15 @@ if (!isset($_SESSION['usuario'])) {
 
         </div>
     </div>
-    <div id='popup' style="display: none;">
+    <!-- <div id='popup' style="display: none;">
                 soy un pop up
     </div>
 
     <script>
-        document.querySelector("Comprar").addEventListener("click",function(){
-            alert("gola");
+        document.querySelector("#Comprar").addEventListener("click",function(){
+            window.open("src/views/frontend/cuenta.php");
         });
-    </script>
+    </script> -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>    
 <script src="ejem.js"></script>

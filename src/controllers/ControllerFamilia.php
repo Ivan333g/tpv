@@ -1,6 +1,8 @@
 <?php
 
 namespace Profesor\ProyecFin\controllers;
+
+use PDOException;
 use Profesor\ProyecFin\lib\Controller;
 use Profesor\ProyecFin\models\Familia;
 
@@ -14,11 +16,16 @@ class ControllerFamilia extends Controller  {
     public function create(){
         $this->renderBa("crearFamilia", ['op'=>'Insertar']);
     }
-
+ 
     public function save(){
-        $this->familia= new Familia($this->get('nombre'), $this->controImg('img'));
-        $this->familia->insert();
-        $this->renderBa("listarFamilias", Familia::getFamilias());
+        try {
+            $this->familia= new Familia($this->get('nombre'), $this->controImg('img'));
+            $this->familia->insert();
+            $this->renderBa("listarFamilias", Familia::getFamilias());
+        } catch (PDOException $th) {
+            $this->renderBa("crearFamilia", ['op'=>'Insertar','error'=>'Nombre ya en uso']);
+        }
+            
     }
     
     public function delete(){

@@ -1,6 +1,8 @@
 <?php
 
 namespace Profesor\ProyecFin\controllers;
+
+use PDOException;
 use Profesor\ProyecFin\lib\Controller;
 use Profesor\ProyecFin\models\Mesa;
 
@@ -16,9 +18,13 @@ class ControllerMesa extends Controller  {
     }
 
     public function save(){
-        $this->mesa= new Mesa($this->get('num_mesa'), $this->get('tipo'));
-        $this->mesa->insert();
-        $this->renderBa("listarMesas", Mesa::getMesas());
+        try {
+            $this->mesa= new Mesa($this->get('num_mesa'), $this->get('tipo'));
+            $this->mesa->insert();
+            $this->renderBa("listarMesas", Mesa::getMesas());
+        } catch (PDOException $th) {
+            $this->renderBa("crearMesa", ['op'=>'Insertar','error'=>'Nombre ya en uso']);
+        }
     }
     
     public function delete(){

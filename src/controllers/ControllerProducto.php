@@ -1,5 +1,7 @@
 <?php
 namespace Profesor\ProyecFin\controllers;
+
+use PDOException;
 use Profesor\ProyecFin\lib\Controller;
 use Profesor\ProyecFin\models\Producto;
 use Profesor\ProyecFin\models\Familia;
@@ -16,9 +18,13 @@ class ControllerProducto extends Controller {
 
     //meee 
      public function save(){
-        $this->proc= new Producto($this->get('precio'),$this->get('nombre'),$this->controImg("img"),$this->get('id_familia'),$this->get('descripcion'));
-        $this->proc->inserta();
-        $this->renderBa("listarProductos", Producto::getProductos());
+        try {
+            $this->proc= new Producto((float)$this->get('precio'),$this->get('nombre'),$this->controImg("img"),$this->get('id_familia'),$this->get('descripcion'));
+            $this->proc->inserta();
+            $this->renderBa("listarProductos", Producto::getProductos());
+        } catch (PDOException $th) {
+            $this->renderBa("crearProducto", ['op'=>'Insertar','error'=>'Nombre ya en uso','Familia'=>Familia::getFamilias()]);
+        }
      }
 
 

@@ -12,7 +12,7 @@
     <div id="encabezado">     
         <h1>compra</h1>   
     </div>   <div id="productos"> <?php     
-    foreach($this->datos['cuenta']->getProductos() as $producto) {
+    foreach($this->datos['cuenta']->getCuenta($_SESSION['mesa']) as $producto) {
         echo "<p><span class='codigo'>".$producto->id_producto."</span>";
         echo "<span class='nombre'>".$producto->nombre."</span>";
         echo "<span class='precio'>".$producto->precio."</span>";
@@ -20,11 +20,11 @@
         echo "<span class='precio'>".$producto->id_familia."</span></p>";
     } ?>
         <hr />
-        <p><span class='pagar'>Precio total: <?php print $this->datos['cuenta']->getCoste(); ?> €</span></p>
+        <p><span class='pagar'>Precio total: <?php print $this->datos['cuenta']->getCoste($_SESSION['mesa']); ?> €</span></p>
         <div class="container">
         <div class="row justify-content-center">
         <h2>Total a Pagar:
-            <input type="number" value="<?php print $this->datos['cuenta']->getCoste(); ?>" id="total" readonly>
+            <input type="number" value="<?php print $this->datos['cuenta']->getCoste($_SESSION['mesa']); ?>" id="total" readonly>
         </h2>
         <h2>Total pagado
             <input type="number" id="pagado">
@@ -47,6 +47,7 @@
         <form action='index.php' method='post'>
             <p> 
                 <span class='pagar'>
+                    <input type="hidden" name="mesa" value='<?php echo $_SESSION['mesa']?>'>
                     <input type='submit' name='action' value='Pagar'/>
                 </span>
             </p>

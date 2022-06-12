@@ -20,7 +20,7 @@ include "menudesplegable.php";
             top: 25%;
             padding: 2%;
             margin-left: 20%;
-            background-color: white;
+            background-color: 6C10AB;
         }
 
         #textoDescripcionProducto {
@@ -43,7 +43,9 @@ include "menudesplegable.php";
         </select><br><br>
         <input type="hidden" name="tabla" value="Usuario" />
         <input type="submit" name="action" value="<?php echo $this->datos['op'] ?>" />
-
+        <div style="text-align:center;">
+            <span style="color:red;"><?php if(isset($this->datos['error'])){ echo $this->datos['error']; }?></span>
+        </div>
     </form>
 
 </body>

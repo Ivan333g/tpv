@@ -20,7 +20,8 @@ include "menudesplegable.php";
             top: 25%;
             padding: 2%;
             margin-left: 20%;
-            background-color: white;
+            background-color: 6C10AB;
+            
         }
 
         #textoDescripcionProducto {
@@ -38,8 +39,10 @@ include "menudesplegable.php";
         <span>Introduce el nombre de la familia: </span> <input type="text" name="nombre" value="<?php echo (isset($this->datos['nombre']) ? $this->datos['nombre'] : "") ?>" placeholder="Nombre de familia"> <br> <br>
         <span>Introduce una imagen:</span><input type="file" name="img" id="img"> <br> <br>
         <input type="hidden" name="tabla" value="Familia" />
-        <input type="submit" name="action" value="<?php echo $this->datos['op'] ?>" />
-
+        <input type="submit" name="action" value="<?php echo $this->datos['op'] ?>" /><br>
+        <div style="text-align:center;">
+            <span style="color:960505;"><?php if(isset($this->datos['error'])){ echo $this->datos['error']; }?></span>
+        </div>
     </form>
 
 </body>

@@ -20,14 +20,6 @@ class Cuenta extends Model{
         
     }
 
-    // public static function getFamilias(){
-    //     $familias = [];
-    //     $datos = self::query("SELECT id_familia, nombre,img FROM familias");
-    //     while ($p = $datos->fetch()) {
-    //         $familias[] = new Familia($p['nombre'],$p['img'],  $p['id_familia']);
-    //     }
-    //     return $familias;
-    // }
     public function getCuenta($num_mesa){
         
         $datos = self::query("SELECT id_producto,cantidad FROM cuentas WHERE num_mesa=$num_mesa");

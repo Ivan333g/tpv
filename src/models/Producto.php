@@ -44,6 +44,7 @@ class Producto extends Model{
 
     //mi funcion inserta 
     public function inserta(){
+        echo $this->precio;
         $query = $this->prepare('INSERT INTO productos (id_producto,precio,descripcion,id_familia,nombre,img) VALUES (:id_producto,:precio,:descripcion,:id_familia,:nombre,:img)');
         $query->execute(['id_producto'=>$this->id_producto,'precio'=>$this->precio,
         'descripcion'=>$this->descripcion,'id_familia'=>$this->id_familia, 'nombre'=>$this->nombre,'img'=>$this->img]);
@@ -75,13 +76,5 @@ class Producto extends Model{
         
         return $proc;
     }
-//     public function __get($prop){
-//         return $this->$prop;
-//     }
-//     public function __set($prop, $valor){
-//         $this->$prop = $valor;
-//     }
 }
-
-
 ?>

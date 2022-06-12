@@ -20,7 +20,8 @@ include "menudesplegable.php";
             top: 25%;
             padding: 2%;
             margin-left: 20%;
-            background-color: white;
+            background-color: 6C10AB;
+
         }
 
         #textoDescripcionProducto {
@@ -36,7 +37,7 @@ include "menudesplegable.php";
 
 <!-- rebisar para que puda agregar productos con su nombrecorto -->
         <br>
-        <span>Introduce el precio del producto: </span> <input step="any" type="number" name="precio" value="<?php echo (isset($this->datos['precio']) ? $this->datos['precio'] : "") ?>" placeholder="Precio" > 
+        <span>Introduce el precio del producto: </span> <input type="number" name="precio" step="0.10" min="0.10" value="<?php echo (isset($this->datos['precio']) ? $this->datos['precio'] : "") ?>" placeholder="Precio" > 
 
         <br> <br>
         <span>Introduce el nombre del producto: </span> <input type="text" name="nombre" value="<?php echo (isset($this->datos['nombre']) ? $this->datos['nombre'] : "") ?>" placeholder="Nombre"> <br> <br>
@@ -53,7 +54,9 @@ include "menudesplegable.php";
         <input type="hidden" name="tabla" value="Producto" />
         <input type="hidden" name="id_producto" value="<?php echo (isset($this->datos['id_producto']) ? $this->datos['id_producto'] : "") ?>" >
         <input type="submit" name="action" value="<?php echo $this->datos['op'] ?>" />
-
+        <div style="text-align:center;">
+            <span style="color:red;"><?php if(isset($this->datos['error'])){ echo $this->datos['error']; }?></span>
+        </div>
     </form>
 
 </body>
