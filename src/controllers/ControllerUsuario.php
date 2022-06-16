@@ -20,6 +20,10 @@ class ControllerUsuario extends Controller  {
         $this->usuario->insert();
         $this->renderBa("listarUsuarios", Usuario::getUsuarios());
     }
+
+    public function buscarPorNombre(){
+        $this->renderBa("listarUsuarios", Usuario::buscarUsuario($this->get('nombre')));
+    }
     
     public function delete(){
         $this->usuario=new Usuario("","","",$this->get('id_usuario'));

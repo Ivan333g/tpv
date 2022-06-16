@@ -1,0 +1,14 @@
+form {
+    width: 50%;
+    border: 2px solid black;
+    top: 25%;
+    padding: 2%;
+    margin-left: 20%;
+    background-color: 6C10AB;
+
+}
+
+#textoDescripcionProducto {
+    height: 3rem;
+    width: 40%;
+}

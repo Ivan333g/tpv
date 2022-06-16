@@ -34,12 +34,28 @@ class Producto extends Model{
         }
         return $productos;
     }
-    //rebisar estos metodos
+
     public static function getProducto($codigo){
         $query = self::prepare("SELECT id_producto,precio,descripcion,id_familia,nombre,img FROM productos WHERE id_producto= :id_producto");
         $query->execute(['id_producto' => $codigo]);
         $p = $query->fetch();
         return ($p) ? new Producto($p['precio'], $p['nombre'], $p['img'], $p['id_familia'], $p['descripcion'],$p['id_producto']) : null;
+    }
+
+    public function buscarDatos($codigo){
+        $query = self::prepare("SELECT id_producto,precio,descripcion,id_familia,nombre,img FROM productos WHERE id_producto= :id_producto");
+        $query->execute(['id_producto' => $codigo]);
+        $p = $query->fetch();
+        return ($p) ? new Producto($p['precio'], $p['nombre'], $p['img'], $p['id_familia'], $p['descripcion'],$p['id_producto']) : null;
+    }
+
+    public static function buscarProducto($nom){
+        $productos = [];
+        $datos = self::query("SELECT id_producto,precio,descripcion,id_familia,nombre,img FROM productos where nombre like '%$nom%'");
+        while ($p = $datos->fetch()) {
+            $productos[] = new Producto($p['precio'], $p['nombre'], $p['img'], $p['id_familia'], $p['descripcion'],$p['id_producto']);
+        }
+        return $productos;
     }
 
     //mi funcion inserta 

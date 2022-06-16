@@ -22,7 +22,7 @@ class Controller{
     protected function get($param){
         if (!isset($_REQUEST[$param])){
             error_log("No existe el parametro $param");
-            return NULL;
+            return null;
         }
         return $_REQUEST[$param];
     }

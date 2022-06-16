@@ -1,0 +1,11 @@
+body{
+    background-image: url('http://getwallpapers.com/wallpaper/full/a/5/d/544750.jpg');
+}
+
+.centrador{
+     height:50px;
+}
+
+.ocultar{
+    background-color : transparent;
+}

@@ -38,7 +38,7 @@ class TPV extends Controller{
     }
 
     public function showBackend(){
-        $this->renderBa("menudesplegable",null);
+        $this->renderBa("abrir_caja",["op"=>"Insertar"]);
     }
 
     public function addProductoPantalla(){
@@ -98,7 +98,6 @@ class TPV extends Controller{
         th,
         tr,
         table {
-            border-top: 1px solid black;
             border-collapse: collapse;
         }
         td.producto,
@@ -128,7 +127,7 @@ class TPV extends Controller{
             <br>Ribera De Los Molinos
             <br> Fecha:'.$datos['ticket']->fecha." ".$datos['ticket']->hora.'
             <br> Mesa:'.$datos['ticket']->num_mesa.'
-            <br> ID Ticket:'.$datos['ticket']->id_ticket.'</p>
+            <br> ID Ticket:'.$datos['ticket']->getUltimoId().'</p>
         <table align="center">
             <thead>
                 <tr>
@@ -143,7 +142,7 @@ class TPV extends Controller{
             $pro=Producto::getProducto($line->id_producto);
             $cuerpo.="<tr><td class='cantidad'>".$line->cantidad."</td>
             <td class='producto'>".$pro->nombre."</td>
-            <td class='precio'>".$pro->precio."c/u</td>
+            <td class='precio'>".$pro->precio."€ c/u</td>
             </tr>";
             $total+=$line->cantidad*$pro->precio;
         }          

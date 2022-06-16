@@ -32,6 +32,15 @@ class Familia extends Model{
         return ($p) ? new Familia($p['id_familia'], $p['nombre']) : null;
     }
 
+    public static function buscarFamilia($nom){
+        $familias = [];
+        $datos = self::query("SELECT id_familia, nombre,img FROM familias where nombre like '%$nom%'");
+        while ($p = $datos->fetch()) {
+            $familias[] = new Familia($p['nombre'],$p['img'],$p['id_familia']);
+        }
+        return $familias;
+    }
+
     public function insert(){
         $query = $this->prepare('INSERT INTO familias (nombre,img) VALUES (:nombre, :img)');
         $query->execute(['nombre'=>$this->nombre,

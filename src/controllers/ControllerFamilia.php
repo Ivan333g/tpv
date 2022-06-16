@@ -16,6 +16,10 @@ class ControllerFamilia extends Controller  {
     public function create(){
         $this->renderBa("crearFamilia", ['op'=>'Insertar']);
     }
+
+    public function buscarPorNombre(){
+        $this->renderBa("listarFamilias", Familia::buscarFamilia($this->get('nombre')));
+    }
  
     public function save(){
         try {

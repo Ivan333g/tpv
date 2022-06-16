@@ -23,7 +23,7 @@ if (!isset($_SESSION['usuario'])) {
     <div class="container bg-info">
         <div class="row mt-3">
             
-            <div class="col-7 mt-2 border border-dark cuenta p-2" >
+            <div class="col-7 mt-2 border border-dark rounded cuenta p-2" >
                 <div id="productos">
                     <table class="table" id="tabla">
                     <form id='quitar' action='index.php' method='post'>
@@ -58,7 +58,7 @@ if (!isset($_SESSION['usuario'])) {
                 finalizar
             este col hace que no sea responsive la parte de los botones
             -->
-            <div class="col mt-2 border border-dark botones">
+            <div class="col mt-2 border border-dark rounded botones">
                 <div class="row row-cols-4">
                     <div class="m-3 bg-secondary border border-dark bordeBotones">
                         <!--regresara a la pantalla de las mesas-->
@@ -81,7 +81,7 @@ if (!isset($_SESSION['usuario'])) {
                     <div class=" m-3 bg-secondary border border-dark bordeBotones">
                     <!--ver porque hace que no funcione el quitar--->
                     <!-- <form action='index.php' method='post'> -->
-                        <input type='submit' class='grupBotones' name='action' value='Comprar' id='Comprar'>
+                        <input type='submit' class='grupBotones' name='action' value='Finalizar' id='Comprar'>
                     <!-- </form> -->
                     </div>
 
@@ -147,6 +147,5 @@ if (!isset($_SESSION['usuario'])) {
     </script> -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>    
-<script src="ejem.js"></script>
 </body>
 </html>

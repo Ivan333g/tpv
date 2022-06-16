@@ -1,12 +1,12 @@
 <?php
 include_once "menudesplegable.php";
 ?>
-<style>
-table{
-    background-color: #C299E5;
-}
-    </style>
-
+<form action="index.php" method="post" enctype="multipart/form-data" autocomplete="on">
+    <span>Buscar Producto:</span>
+    <input type="text" name="nombre" placeholder="Buscar Producto" required>
+    <input type="hidden" name="tabla" value="Producto" />
+    <input type="submit" name="action" value="Buscar" />
+</form>
 <article>
     <table class="table table-striped">
         <thead>

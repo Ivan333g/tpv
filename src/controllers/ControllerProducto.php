@@ -16,6 +16,9 @@ class ControllerProducto extends Controller {
         $this->renderBa("crearProducto", ['op'=>'Insertar','Familia'=>Familia::getFamilias()]);
     }
 
+    public function buscarPorNombre(){
+        $this->renderBa("listarProductos", Producto::buscarProducto($this->get('nombre')));
+    }
     //meee 
      public function save(){
         try {

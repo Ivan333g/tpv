@@ -48,6 +48,15 @@ class Usuario extends Model{
         return ($p) ? new Usuario($p['nombre'],$p['password'],$p['rol'],$p['id_usuario']) : null;
     }
 
+    public static function buscarUsuario($nom){
+        $usuarios = [];
+        $datos = self::query("SELECT id_usuario, nombre,password,rol FROM usuarios where nombre like '%$nom%'");
+        while ($p = $datos->fetch()) {
+            $usuarios[] = new Usuario($p['nombre'],$p['password'],$p['rol'],$p['id_usuario']);
+        }
+        return $usuarios;
+    }
+
     public function insert(){
         $query = $this->prepare('INSERT INTO usuarios (nombre,password,rol) VALUES (:nombre, :password,:rol)');
         $query->execute(['nombre'=>$this->nombre,'password'=>$this->password,'rol'=>$this->rol]);

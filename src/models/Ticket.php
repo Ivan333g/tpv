@@ -31,6 +31,16 @@ class Ticket extends Model{
 
         return ($p) ? $p['id_ticket'] : null;
     }
+
+    public static function buscarTicket($fecha){
+        $tickets = [];
+        $datos = self::query("SELECT id_ticket, fecha,hora,num_mesa FROM tickets where fecha='$fecha'");
+        while ($p = $datos->fetch()) {
+            $tickets[] = new Ticket($p['fecha'],$p['hora'],  $p['num_mesa'],$p['id_ticket']);
+        }
+        return $tickets;
+    }
+
     //insertar ticket
     public function insert(){
         $query = $this->prepare('INSERT INTO tickets (id_ticket,fecha,hora,num_mesa) VALUES (:id_ticket, :fecha,:hora,:num_mesa)');

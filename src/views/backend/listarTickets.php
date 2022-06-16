@@ -1,11 +1,12 @@
 <?php
 include_once "menudesplegable.php";
 ?>
-<style>
-    table{
-        background-color:#C299E5;
-    }
-</style>
+<form action="index.php" method="post" enctype="multipart/form-data" autocomplete="on">
+    <span>Buscar Ticket:</span>
+    <input type="date" name="fecha" format="yyyy-mm-dd" required>
+    <input type="hidden" name="tabla" value="Ticket" />
+    <input type="submit" name="action" value="Buscar" />
+</form>
 <article>
     <table class="table table-striped" id="tabla">
         <thead>
@@ -36,7 +37,8 @@ include_once "menudesplegable.php";
                         document.getElementById('H$con->id_ticket').value='true';
                         let td=document.getElementById('T$con->id_ticket');";
                         foreach ($this->datos['linea_ticket']->getLineaTicket($con->id_ticket) as $line) {
-                echo "texto+='<b>Id Producto:</b>$line->id_producto <b>cantidad:</b>$line->cantidad <b>codigo Linea:</b>".$line->id_linea_ticket." <br>';";
+                            $prod=$this->datos['producto']->buscarDatos($line->id_producto);
+                echo "texto+='<b>Producto:</b>$prod->nombre <b>cantidad:</b>$line->cantidad <b>precio:</b>".$prod->precio."€ <br>';";
                         }
                 echo "td.innerHTML=texto;
                     }else{

@@ -1,11 +1,12 @@
 <?php
 include_once "menudesplegable.php";
 ?>
-<style>
-    table{
-        background-color: #C299E5;
-    }
-</style>
+<form action="index.php" method="post" enctype="multipart/form-data" autocomplete="on">
+    <span>Buscar Familia:</span>
+    <input type="text" name="nombre" placeholder="Buscar familia" required>
+    <input type="hidden" name="tabla" value="Familia" />
+    <input type="submit" name="action" value="Buscar" />
+</form>
 <article>
     <table class="table table-striped">
         <thead>

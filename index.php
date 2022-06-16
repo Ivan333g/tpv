@@ -58,7 +58,7 @@ if (isset($_REQUEST['action'])) {
             $tpv->quitarCuenta($_SESSION['mesa']);
             break;
         //sirve para sacar el ticket
-        case 'Comprar':
+        case 'Finalizar':
             $tpv->buyCuenta();
             break;
         //pagar la cuenta
@@ -87,6 +87,10 @@ if (isset($_REQUEST['action'])) {
         case 'Cancelar':
             $tpv->cancelar();
             $tpv->showMesas();
+        break;
+        //buscara en la base de datos todo lo que coinsida con lo enviado
+        case 'Buscar':
+            $crud->buscarPorNombre();
         break;
         //si no tiene accion le montrara para logearse
         default:

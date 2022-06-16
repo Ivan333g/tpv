@@ -1,11 +1,6 @@
 <?php
 include_once "menudesplegable.php";
 ?>
-<style>
-    table{
-        background-color:#C299E5;
-    }
-</style>
 <article>
     <table class="table table-striped">
         <thead>
