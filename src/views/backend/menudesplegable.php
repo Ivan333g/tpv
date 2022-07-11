@@ -43,9 +43,10 @@ if (!isset($_SESSION['usuario'])) {
                 <li><a href="index.php?tabla=Ticket&action=Listar">Tickets</a></li>
                 <li><a href="index.php?tabla=Cierre_caja&action=Listar">Historial Cierres</a></li>
             </ul>
-                <li><a href="index.php?action=Desconectar">Salir</a></li>
+                
                 <li><a href="index.php?tabla=Cierre_caja&action=Crear">Abri Caja</a></li>
                 <li><a href="index.php?tabla=Cierre_caja&action=Editar">Cerrar Ultima Caja</a></li>
+                <li><a href="index.php?action=Desconectar">Salir</a></li>
             </li>           
         </ul>
     </nav>

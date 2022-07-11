@@ -31,9 +31,11 @@ if (!isset($_SESSION['usuario'])) {
                         // Si la cesta está vacía, mostramos un mensaje
                         $cuenta_vacia = $this->datos['cuenta']->isEmpty($_SESSION['mesa']);
                         if ($cuenta_vacia) {
+                            //echo "Usuario: ".$_SESSION['usuario'];
                             print '<tr><th>Cantidad</th><th>Producto</th><th>Precio</th><th>Opcion</th></tr>';
                         } else {
                             ?>
+                        <!--<?php echo "<b>Usuario</b>: ".$_SESSION['usuario']; ?>--->
                        <tr><th>Cantidad</th><th>Producto</th><th>Precio</th><th>Opciones</th></tr>
                             <?php 
                             //aqui mostrara la cuenta dependiendo de la mesa    
@@ -60,16 +62,12 @@ if (!isset($_SESSION['usuario'])) {
             -->
             <div class="col mt-2 border border-dark rounded botones">
                 <div class="row row-cols-4">
-                    <div class="m-3 bg-secondary border border-dark bordeBotones">
-                        <!--regresara a la pantalla de las mesas-->
-                        <!-- <form action='index.php' method='post'> -->
-                        <input type='submit' class='botonMesa' name='action' value='Mesas'/>
-                        <h4>
+                    <div class="m-3 border border-dark bordeBotones" style="text-align:center; padding-top:25px">
+                        <h4 style="color:blue;">
                         <?php
-                            echo "Mesa:".$_SESSION['mesa'];
+                            echo "Mesa: ".$_SESSION['mesa'];
                         ?>
                         </h4>
-                        <!-- </form> -->
                     </div>
 
                     <div class=" m-3 bg-secondary border border-dark bordeBotones">
