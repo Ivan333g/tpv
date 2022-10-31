@@ -10,19 +10,21 @@ if (!isset($_SESSION['usuario'])) {
 ?>
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tpv</title>
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="./styles/style.css">
     <link rel="stylesheet" type="text/css" href="./styles/bootpantalla.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 </head>
-<!-- <body class="bg-dark"> -->
+
 <body style="background-image:url('http://getwallpapers.com/wallpaper/full/a/5/d/544750.jpg')">
     <div class="container bg-info">
-        <div class="row mt-3">
-            <div class="col-7 mt-2 border border-dark rounded cuenta p-2" >
+        <div class="contenedor">
+        <div class="col-7 mt-2 border border-dark rounded cuenta p-2" >
                 <div id="productos">
                     <table class="table" id="tabla">
                     <form id='quitar' action='index.php' method='post'>
@@ -55,13 +57,9 @@ if (!isset($_SESSION['usuario'])) {
                     </table>
                 </div>
             </div>
-            <!-- 
-                finalizar
-            este col hace que no sea responsive la parte de los botones
-            -->
-            <div class="col mt-2 border border-dark rounded botones">
-                <div class="flex-container">
-                    <div class="m-2 mt-3 border border-dark bordeBotones" style="text-align:center; padding-top:25px">
+
+            <div class="row row-cols-4">
+                    <div class="m-3 border border-dark bordeBotones" style="text-align:center; padding-top:25px">
                         <h4 style="color:blue;">
                         <?php
                             echo "Mesa: ".$_SESSION['mesa'];
@@ -69,34 +67,38 @@ if (!isset($_SESSION['usuario'])) {
                         </h4>
                     </div>
 
-                    <div class=" m-2 mt-3 bg-secondary border border-dark bordeBotones">
+                    <div class=" m-3 bg-secondary border border-dark bordeBotones">
                         <!---quitara todos los productos de la cuenta-->
                         <input type='hidden' name='mesa' value='<?php echo $_SESSION['mesa'];?>'/>
                         <input type='submit' class='grupBotones' name='action' value='Cancelar'/>
                     </div>
 
-                    <div class=" m-2 mt-3 bg-secondary border border-dark bordeBotones">
+                    <div class=" m-3 bg-secondary border border-dark bordeBotones">
                     <!--ver porque hace que no funcione el quitar--->
                     <!-- <form action='index.php' method='post'> -->
                         <input type='submit' class='grupBotones' name='action' value='Finalizar' id='Comprar'>
                     <!-- </form> -->
                     </div>
 
+                    <div class=" m-3 bg-secondary border border-dark bordeBotones">
+                        cierre de caja
+                    </div>
 
-                    <div class=" m-2 mt-3 bg-secondary border border-dark bordeBotones">
+                    <div class=" m-3 bg-secondary border border-dark bordeBotones">
                         <!--orden en cocina prondra la cuenta en espera-->
                         <input type='hidden' name='mesa' value='<?php echo $_SESSION['mesa'];?>'/>
                         <input type='submit' class='grupBotones' name='action' value='Orden'/>
                     </div>
 
-                    <div class="m-2 mt-3 bg-secondary border border-dark bordeBotones">
+                    <div class="m-3 bg-secondary border border-dark bordeBotones">
                         <!---boton para desconectar el usuario-->
                         <input type='submit' class='grupBotones' name='action' value='Desconectar'/>
                     </div>
                 </div>
-            </div>
-            
-            <div class="col-11 border border-dark producto">
+        </div>
+
+        <div class="contenedor2">
+        <div class="col-11 border border-dark producto">
                 <div class="ordenimg">
                     <?php
                     //aqui mostrara los productos para seleccionar y agregarlo a la cuenta
@@ -115,7 +117,6 @@ if (!isset($_SESSION['usuario'])) {
                     ?> 
                 </div>   
             </div>
-
             <div class="col border border-dark familia">
                 <div class="ordenimg">
                 <?php
@@ -127,19 +128,10 @@ if (!isset($_SESSION['usuario'])) {
                 ?> 
                 </div>
             </div>
-
         </div>
     </div>
-    <!-- <div id='popup' style="display: none;">
-                soy un pop up
-    </div>
 
-    <script>
-        document.querySelector("#Comprar").addEventListener("click",function(){
-            window.open("src/views/frontend/cuenta.php");
-        });
-    </script> -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>  
 </body>
+
 </html>

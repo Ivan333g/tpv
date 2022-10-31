@@ -1,0 +1,35 @@
+.contenedor {
+    display: grid;
+    grid-template-columns: 1fr 1fr ; 
+  
+}
+
+.contenedor2 {
+    display: grid;
+    grid-template-columns: 1fr 2fr ; 
+  
+}
+
+
+.contenedor div, .contenedor2 div {
+    border: 1px solid black;
+    text-align: center;
+    align-items: center;
+    margin: 10px;
+    min-height: 400px;
+}
+
+
+
+
+@media screen and (max-width: 800px) {
+ 
+    .contenedor, .contenedor2 {
+        display: grid;
+        grid-template-columns: 1fr; 
+      
+    } 
+
+  
+
+}
